@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undervisning Tirsdag Uke 2</title>
+</head>
+<body>
+
+    <div id="firstDiv"> box </div>
+    <!-- <p>paragraf</p>
+    <input type="text">
+    <input type="number">
+    <input type="password">
+
+    <table>
+        <tr><th>Navn</th><th>Adresse</th></tr>
+        <tr><td>Therese</td><td>bak svingen</td></tr>
+        <tr><td>Trude</td><td>forran svingen</td></tr>
+    </table>
+
+    <button> knapp </button> --> 
+    <!-- CTRL + KC / *// kommenter
+    CTRL + KU / * // FJERNE KOMMENTAR -->
+    
+
+    <!-- <div onclick="showName('Therese' , ' bor bak svingen', 32)"> Therese</div>
+    <div onclick="showName('Marie' , ' bor forran svingen', 45)"> Marie</div> -->
+    <!-- <div onclick="showName(this , ' bor bak svingen', 32)"> Therese</div>
+    <div onclick="showName(this , ' bor forran svingen', 45)"> Marie</div>
+
+    onchange<input type="text" onchange="changeName(this)">
+    oninput<input type="text" oninput="changeName(this)"> -->
+
+    <div class="test"></div>
+    <div id="test"></div>
+    <!-- //. / # så laer div med class eller id automatisk -->
+    
+
+    <script>
+
+        // function showName(userName, address, age ){
+        //     console.log('funksjon fungerer');
+        //     // document.getElementById('firstDiv').innerHTML = userName + ' bor bak svingen';
+        //     document.getElementById('firstDiv').innerHTML = userName + address + ' Alder: ' + age;
+        //     console.log(age)
+
+        // }
+
+        
+        function showName(element, address, age ){
+            console.log(element)
+            console.log('funksjon fungerer');
+            // document.getElementById('firstDiv').innerHTML = userName + ' bor bak svingen';
+            document.getElementById('firstDiv').innerHTML += element.innerHTML + address + ' Alder: ' + age;
+            console.log(age)
+        }
+
+        function changeName(inputValue){
+            document.getElementById('firstDiv').innerHTML = inputValue.value;
+        }
+
+
+        CreateHTML('Therese', 100, 150, 'red' )
+        CreateHTML('Marie', 300, 50, 'hotpink' )
+        CreateHTML('TestPerson', 10, 300, 'blue')
+        function CreateHTML(userName, boxWidth, boxHeight, boxColor){
+            document.getElementById('firstDiv').innerHTML += /*HTML*/`
+              
+                <div onclick="showName(this, 'test Adresse' , 27)" 
+                ${createStyle(boxHeight, boxWidth, boxColor)}> 
+                    ${userName}
+                </div>
+                
+            `;
+            // <div style="height: ${boxHeight}px; width:${boxWidth}px; background-color:${boxColor};"> ${userName}</div>
+
+        }
+
+        function createStyle(boxHeight, boxWidth, boxColor){
+
+            return `style="${createHeight(boxHeight)} ${createWidth(boxWidth)} ${createColor(boxColor)}"`;
+
+        }
+
+        function createHeight(boxHeight){
+            return `height: ${boxHeight}px;`;
+
+        }
+
+        function createWidth(boxWidth){
+            return `width:${boxWidth}px;`;
+        }
+
+        function createColor(boxColor){
+            return `background-color:${boxColor};`;
+
+        }
+
+    </script>
+
+
+    
+</body>
+</html>
