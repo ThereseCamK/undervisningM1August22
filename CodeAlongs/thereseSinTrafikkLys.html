@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCD</title>
+    <style>
+        #trafikklys{
+            width: 210px;
+            height: 700px;
+            background-color: #4e4c4c;
+            border-radius: 5em;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 15px;
+            box-shadow: 2px 10px 25px 5px black inset ;
+        }
+       
+        #rød {
+            background-color: red;
+            opacity: 90%;
+        }
+        #orange{
+            background-color: orange;
+            opacity: 10%;
+        }
+        #grønn{
+            background-color: green;
+            opacity: 10%;
+        }
+        .sirkel{
+            box-shadow: 10px 20px 25px  black inset ;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+   
+            
+        }
+        .outersirkel{
+            box-shadow: 5px 5px 15px rgb(23, 23, 23)  ;
+            border-radius: 50%;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="trafikklys">
+        <div class="outersirkel"><div id="rød" class="sirkel"></div></div>
+        <div class="outersirkel"><div id="orange" class="sirkel"></div></div>
+        <div class="outersirkel"><div id="grønn" class="sirkel"></div></div>
+    </div>
+
+    <!-- <button onclick="changeToRaY()">bytt til rød og gul</button>
+    <button onclick="changeToG()">bytt til grønn</button>
+    <button onclick="changeToY()">bytt til gul </button>
+    <button onclick="changeToR()">bytt til rød </button> -->
+    
+    <!-- <button onclick="GO()">start</button>
+    <button onclick="STOP()">stopp</button> -->
+    <!-- <button onclick="changeToG()">bytt til grønn</button>
+    <button onclick="changeToY()">bytt til gul </button>
+    <button onclick="changeToR()">bytt til rød </button> -->
+
+    <script>
+                GO()
+            function GO( ){
+                 setTimeout(redAndOrangeLight, 2000);
+                
+            }
+
+            function STOP(){
+                setTimeout(orangeLight, 2000);
+            }
+
+            function redAndOrangeLight(){
+                console.log('rødt og gult lys')
+                changeColorLight('rød', 90);
+                changeColorLight('orange', 90);
+                changeColorLight('grønn', 10);
+
+                setTimeout(greenLight, 2000);
+            }
+
+            function greenLight(){
+                console.log('grønt lys')
+                changeColorLight('rød', 10);
+                changeColorLight('orange', 10);
+                changeColorLight('grønn', 90);
+                setTimeout(orangeLight, 5000)
+                
+            }
+
+            function orangeLight(){
+                console.log('gult lys')
+                changeColorLight('rød', 10);
+                changeColorLight('orange', 90);
+                changeColorLight('grønn', 10);
+                setTimeout(redLight, 2000);
+            }
+            function redLight(){
+             console.log('rødt lys')
+             changeColorLight('rød', 90);
+             changeColorLight('orange', 10);
+             changeColorLight('grønn', 10);
+             setTimeout(redAndOrangeLight, 5000)
+          
+         }
+
+
+            function changeColorLight(op, val){
+               return document.getElementById(op).style.opacity = val+'%';
+         
+            }
+    </script>
+    
+</body>
+
+</html>
