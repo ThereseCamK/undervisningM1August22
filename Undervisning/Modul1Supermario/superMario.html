@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variabler if og else</title>
+
+    <!-- Oppgave: SuPeR mArIo!
+    Last ned png bildene av mario,luigi,peach,yoshi og bowser
+    Valgfritt å ta med bildene av (toad) og bowsershroom.
+    Disse skal vises frem som en select character type skjerm
+    Når man klikker på en av de, skal de ut i kamp mot bowser!
+    Da vises bildet av bowser og den valgte karakteren, samt hpn deres
+    Bowser har 300 i hp, mario har 200hp, peach har 100hp, yoshi har 80hp og luigi har 140hp
+    Lag en knapp for bowser til å angripe motstanderen, og en knapp for den valgte karakteren så de kan slå bowser
+    bruk variabler og if - setninger for å sette hvem karakteren er og vise statsene dems slik at du unngår for mange forskjellige metoder.
+    Dersom du har med bildene av soppene kan disse settes ved siden av karakterene i kombat - og regenerere helsen dems. Toad- gir liv til den valgte
+    karakteren, mens bowsershroom regenererer helsen til bowser :) 
+    lykke til! -->
+ 
+
+</head>
+
+<body>
+    <div>
+        <img id="luigii" src="luigii.jpg" onclick="selectCharacter(this)" />
+        <img id="mario" src="mario.png" onclick="selectCharacter(this)" />
+        <img id="peach" src="peach.png" onclick="selectCharacter(this)" />
+        <img id="yoshi" src="yoshi.png" onclick="selectCharacter(this)" />
+
+        <div>
+            <div>
+                <img id="selected" />
+                <div id="selectedHp">200 HP</div>
+                <button onclick="AttackOpponent('character')">Attack Bowser</button>
+            </div>
+            <div>
+                <img src="bowser.png" />
+                <div id="bowserHp">300 HP</div>
+                <button onclick="AttackOpponent('bowser')">Attack</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+    let charHp = 0;
+    let bowserHp = 300;
+
+    function AttackOpponent(attacker){
+        if(attacker == "character"){
+            bowserHp -= 20;
+            document.getElementById("bowserHp").innerHTML = bowserHp;
+        }
+        else{
+            charHp -= 50;
+            document.getElementById("selectedHp").innerHTML = charHp;
+        }
+       
+    }
+
+    function selectCharacter(element) {
+        // mario har 200hp, peach har 100hp, yoshi har 80hp og luigi har 140hp
+        let selected = document.getElementById("selected").src = element.src;
+        setHealth(element);        
+        updateHp();
+    }
+    function updateHp(){
+        document.getElementById("selectedHp").innerHTML = charHp;
+    }
+    function setHealth(element){
+        if(element.id=="mario"){
+            charHp = 200;
+        }
+        else if(element.id=="luigii"){
+            charHp = 140;
+        }
+        else if(element.id=="peach"){
+            charHp = 100;
+        }
+        else{
+            charHp = 80;
+        }
+    }
+</script>
+
+<style>
+    img {
+        height: 200px;
+        width: 100px;
+        margin: 30px;
+    }
+
+    .smallImg {
+        height: 200px;
+        width: 150px;
+    }
+
+    .flex {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .btn {
+        width: 70px;
+        margin-left: 50px;
+    }
+</style>
+</body>
+
+</html>

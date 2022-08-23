@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <img id="th" src="th.jpg" class="img" onclick="clickedPic(this)"/>
+        <img id="ma" src="ma.jpg" class="img" onclick="clickedPic(this)"/>
+        <div id="txt">Hvem klikket jeg på`?</div>
+    </div>
+    <script>
+        let number = 0;
+        let decimal = 0.0;
+        let txt = "";
+        let therese = true;
+        const numbaFive = 5;
+        let bool = true;
+        let thimg = document.getElementById("th");
+        let sum = sumFunc(5,5);
+        let largestNum = getLargestNum(5,10);
+        let cool = true;
+
+        //pause til 10.30!!!!
+        function clickedPic(element){
+            if(element.id=="th"){
+                document.getElementById("txt").innerHTML = "Therese";
+            }
+            else{
+                document.getElementById("txt").innerHTML = "Marie";
+            }
+        }
+
+        function sumFunc(number1, number2){
+            number = number + number1;
+            
+            let hallo = "hei";
+            return number1+ number2;
+        }
+        function isCool(){
+            if(therese != cool){
+                return false;
+            }            
+            else{
+                return true;
+            }
+        }
+        function getLargestNum(number1, number2){
+            if(number1 > number2){
+                return number1;
+            }
+            else if(number1 == number2){
+                return 0;
+            }
+            else{
+                return number2;
+            }
+        }
+
+    </script>
+</body>
+<style>
+    .img{
+    height: 200px;
+    width: 200px;
+    margin: 30px;
+    }
+</style>
+</html>

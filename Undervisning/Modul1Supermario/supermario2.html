@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Løkker</title>
+</head>
+<body>  
+    <div>
+        <div class="flex">Select character</div>
+        <img src="mario.png" class="smallImg" onclick="selectPlayer('mario')"/>
+        <img src="luigi.png" class="smallImg" onclick="selectPlayer('luigi')"/>
+        <img src="peach.png" class="smallImg" onclick="selectPlayer('peach')"/>
+        <img src="yoshi.png" class="smallImg" onclick="selectPlayer('yoshi')"/>
+    </div>
+    <div class="flex">
+        <img src="bowser.png" class="img"/>
+        <div id="bowserHp">100 HP</div>
+        <button class="btn" id="bowser" onclick=attackOpponent(this)>Attack enemy!</button>
+        <img src="bwsmush.png" class="img" onclick="regenBowser()"/>
+    </div>
+    <div class="flex">
+        <img id="selectedChar" src="mario.png" class="img"/>
+        <div id="charHp">200 HP</div>
+        <button class="btn" id="char" onclick="attackOpponent(this)">Attack Bowser!</button>
+        <img src="toad.png" class="img" onclick="regenLife()"/>
+        
+    </div>
+    
+<script> 
+    let bowserHp = 300;   
+    let charHp = 0;
+    let player = 'mario';
+
+    function selectPlayer(playerName){      
+        document.getElementById('bowser').innerHTML = "Attack " +playerName;
+        document.getElementById('selectedChar').src = playerName+'.png'; 
+        player = playerName;
+        regenLife();
+    }
+
+    function regenBowser(){
+        bowserHp = 300;
+        document.getElementById("bowserHp").innerHTML = bowserHp + ' HP'
+    }
+
+    function regenLife(){
+        if(player === 'mario'){
+            charHp = 200;
+        }
+        else if(player === 'peach'){
+            charHp = 100;
+        }
+        else if(player === 'yoshi'){
+            charHp = 80;
+        }
+        else{
+            charHp = 140;
+        }
+        document.getElementById("charHp").innerHTML = charHp + ' HP'
+    }
+  
+    function attackOpponent(element){                 
+        if(element.id === 'char'){
+            charAttacks();
+        }
+        else{
+            bowserAttacks(player);
+        }
+    }
+    function charAttacks(){
+        bowserHp -= 10;
+        document.getElementById("bowserHp").innerHTML = bowserHp + ' HP'
+    }
+    function bowserAttacks(playerName){
+        charHp -= 20;
+        document.getElementById("charHp").innerHTML = charHp + ' HP'
+    }
+
+</script>
+<style>
+.img{
+    height: 300px;
+    width: 200px;
+    margin: 30px;
+}
+.smallImg{
+    height: 200px;
+    width: 150px;
+}
+.flex{
+    display: flex;
+    align-items: flex-start;
+}
+.btn {
+    width: 70px;
+    margin-left: 50px;
+}
+</style>
+</body>
+</html>
