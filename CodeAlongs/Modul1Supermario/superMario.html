@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variabler if og else</title>
+
+
+</head>
+
+<body>
+
+    <div id="app"></div>
+   
+</body>
+<script>
+    //model
+    let charHp = 200;
+    let bowserHp = 300;
+    let selectedCharPic = '../../Undervisning/Modul1Supermario/mario.png';
+    let winner = '';
+    let disabledBTN = '';
+    let charcterInMotion = 'character';
+    let damage = 0;
+    let firstClass = '';
+//pause til 12.58
+
+    //view
+    view();
+    function view(){
+        // <img id="luigii" src="../../Undervisning/Modul1Supermario/luigii.jpg" onclick="selectCharacter(this)" />
+        //             <img id="mario" src="../../Undervisning/Modul1Supermario/mario.png" onclick="selectCharacter(this)" />
+        //             <img id="peach" src="../../Undervisning/Modul1Supermario/peach.png" onclick="selectCharacter(this)" />
+        //             <img id="yoshi" src="../../Undervisning/Modul1Supermario/yoshi.png" onclick="selectCharacter(this)" />
+
+        let html = '';
+        html += `
+        
+                    <div>
+                   
+
+                    <div>
+                        <div>
+                            <img src="${selectedCharPic}" />
+                            <div >${charHp} HP</div>
+                           
+                        </div>
+                        <button ${disabledBTN} onclick="AttackOpponent()">Attack </button>
+                        ${winner}
+                        <div class="${firstClass}">
+                            <img src="../../Undervisning/Modul1Supermario/bowser.png" />
+                            <div >${bowserHp} HP</div>
+                     
+                        </div>
+                    </div>
+
+                </div>
+        `
+        document.getElementById('app').innerHTML = html
+    }
+
+
+
+    //controller 
+
+    function AttackOpponent(){
+        damage = Math.floor(Math.random() * 6 + 5)
+        console.log(damage)
+        if(charcterInMotion == "character"){
+            bowserHp -= damage;
+            charcterInMotion = 'bowser';
+            firstClass = 'first'
+    
+        }
+        else{
+           charHp -= damage;
+           charcterInMotion = 'character'
+           firstClass = ''
+            
+        }
+        checkWinner();
+        view();
+       
+    }
+
+    function checkWinner(){
+        if(charHp <= 0){
+            winner = '<div>Bowser vant </div>'
+           disabledBTN = 'disabled'
+
+        }
+        else if(bowserHp <= 0){
+            winner = '<div>Player vant </div>'
+            disabledBTN = 'disabled'
+        }
+
+        
+    }
+
+    function selectCharacter(element) {
+        console.log(element)
+        // mario har 200hp, peach har 100hp, yoshi har 80hp og luigi har 140hp
+        selectedCharPic= element.src;
+        setHealth(element);        
+            view();
+    }
+
+    // function updateHp(){
+    //   view();
+    // }
+
+    function setHealth(element){
+        if(element.id=="mario"){
+            charHp = 200;
+        }
+        else if(element.id=="luigii"){
+            charHp = 140;
+        }
+        else if(element.id=="peach"){
+            charHp = 100;
+        }
+        else{
+            charHp = 80;
+        }
+    }
+</script>
+
+<style>
+    img {
+        height: 200px;
+        width: 100px;
+        margin: 30px;
+    }
+
+    .smallImg {
+        height: 200px;
+        width: 150px;
+    }
+
+    .flex {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .btn {
+        width: 70px;
+        margin-left: 50px;
+    }
+    .first{
+        background-color: red;
+    }
+</style>
+</body>
+
+</html>
