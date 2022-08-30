@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- MVC
+        IF-setning
+        for Loops 
+        return
+    -->
+
+    <div id="app"></div>
+
+    <script>
+        //model
+        let head = '';
+        let body = '';
+        let legs = '';
+
+
+        //view
+        view();
+        function view(){
+            let html = '';
+            html += bodyParts('head');
+            html += bodyParts('body');
+            html += bodyParts('legs');
+            html += `<div>
+                ${head}<br>
+                ${body}<br>
+                ${legs}</div>`
+            // for(let i = 1; i < 5 ; i++){
+            //     html += `<img src="img/head${i}.png">`
+            // }
+            // for(let i = 1; i < 5 ; i++){
+            //     html += `<img src="img/body${i}.png">`
+            // }
+            // for(let i = 1; i < 5 ; i++){
+            //     html += `<img src="img/legs${i}.png">`
+            // }
+            // html += `
+            // <img src="img/head1.png">
+            // <img src="img/head2.png">
+            // <img src="img/head3.png">
+            // <img src="img/head4.png">
+            // `
+            document.getElementById('app').innerHTML = html;
+        }
+
+        function bodyParts(part){
+            let html = '';
+            for(let i = 1; i < 5 ; i++){
+                html += `<img alt="${part}" onclick="selectPart(this)" src="img/${part}${i}.png">`
+            }
+            return html
+        }
+
+
+
+        //controller
+        function selectPart(element){
+            console.log(element.alt)
+            if(element.alt == 'head'){
+               head = `<img src="${element.src}">` 
+            }
+            if(element.alt == 'body'){
+            body = `<img  src="${element.src}">` 
+            }
+            if(element.alt == 'legs'){
+            legs = `<img  src="${element.src}">` 
+            }
+
+            view();
+        }
+
+
+    </script>
+    
+</body>
+</html>
