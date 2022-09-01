@@ -1,0 +1,49 @@
+<script>
+    // "S i m en er best"
+    //  0 1 2 3
+    let text = "Simen er best"
+    let textArray=["Simen er best","Marius er best", "chris er best", "lars haugberg er best"];
+    let larsErBest= textArray[textArray.length-1];
+    let bokstavenB = text.charAt(9);
+    console.log(bokstavenB);
+    console.log(larsErBest);
+
+    
+    let numberarray = [1];
+    //numberarray.push(1);
+    numberarray.push(2);
+    
+    numberarray.push(3,4,5);
+    console.log(numberarray);
+    
+    let handlevogn = ["banan","eple"]; 
+    handlevogn.push("bjørnebær");
+    // handlevogn.length = 3
+    handlevogn[2];
+  
+    //let kassa = handlevogn[]; 
+   // let kassa = handlevogn[1];
+    //let kassa = handlevogn[2];
+
+    //Lager automatisk index
+    for(let index in handlevogn){
+        console.log(handlevogn[index]);
+    }
+   
+    //Henter ut selve verdiinnhold (item)
+    for(let item of handlevogn){
+        console.log(item);
+    }
+    console.log('Her er foreach!!');
+    handlevogn.forEach(item=>{
+        item = item + '  Hei';
+        console.log(item)
+    });
+
+    console.log("vanlig forløkke nå:")
+    for(let i = 0; i<handlevogn.length; i++){
+        console.log(handlevogn[i]);        
+    }   
+    
+ 
+</script>
