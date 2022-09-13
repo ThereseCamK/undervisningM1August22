@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        //model
+        let words = ['zebra', 'fotosyntese', 'iskrem', 'bowling', 'unittesting'];
+        let randomIndex = Math.floor(Math.random()* words.length);
+        let word = words[randomIndex];
+        let guessedWord = '';
+        let answerText = '';
+        let hintTxt = '';
+        let hintCount = 0;
+
+        //view
+        show();
+        function show(){
+            let html = '<h1>HANGMAN WORD EDITION</h1>';
+            html += `
+            <p>${answerText}</p>
+            <p>${hintTxt}</p>
+                <input type="text" oninput="guessedWord = this.value">
+                <button onclick="checkWord()"> Sjekk ord</button>
+                <button onclick="showHint()"> vis hint</button>
+            `
+            document.getElementById('app').innerHTML = html;
+
+        }
+
+
+        //controller
+        function checkWord(){
+            if(word == guessedWord){
+                answerText ='du gjettet riktig'
+            }
+            else{
+                answerText ='du gjettet feil, prøv igjen';
+            }
+            show();
+        }
+
+        function showHint(){
+            hintCount ++;
+            if(hintCount == 1){
+                hintTxt = 'lengden på ordet er: ' + word.length;
+            }
+            if(hintCount == 2){
+                let randomIndexOfWord = Math.floor(Math.random()* word.length - 1) 
+            hintTxt += '<br>en random Bokstav er : '+ word.charAt(randomIndexOfWord)
+            }
+          
+
+
+            show();
+
+        }
+    </script>
+</body>
+</html>

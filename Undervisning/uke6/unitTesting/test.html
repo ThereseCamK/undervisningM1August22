@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.19.1.css">
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.19.1.js"></script>
+    <script src="controller.js"></script>
+</body>
+
+<script>
+        let persons = [];
+        let errorMsg = '';
+        let newPerson = '';
+  
+      QUnit.test('add person', function(assert) {
+        newPerson = 'therese';
+        persons = ['terje']
+        addNewPerson();
+        let actual = persons;
+        let expected = ['terje','therese'];
+        assert.deepEqual(actual, expected);
+      });
+
+
+      QUnit.test('feilmelding', function(assert) {
+        newPerson = '';
+        addNewPerson();
+        let actual = errorMsg;
+        let expected = 'venligst fyll inn';
+        assert.deepEqual(actual, expected);
+      });
+
+      QUnit.test('change Person', function(assert) {
+        newPerson = 'marie';
+        persons = ['terje', 'therese', 'joakim', 'linn'];
+        changeperson(2);
+        let actual = persons;
+        let expected = ['terje', 'therese', 'marie', 'linn'];
+        assert.deepEqual(actual, expected);
+      });
+ 
+  </script>

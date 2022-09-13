@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        //model
+        let words = ['zebra', 'fotosyntese', 'iskrem', 'bowling', 'unittesting'];
+        let randomIndex = Math.floor(Math.random()* words.length);
+        let word = words[randomIndex];
+        let guessedLetter = '';
+        let answerText = '';
+        let wordArray = [];
+       
+ 
+
+        //view
+        showWord()
+        show();
+        function show(){
+            let html = '<h1>HANGMAN WORD EDITION</h1>';
+            
+            html += `
+            <p>${answerText}</p>
+                <p>${wordArray.join('')}</p>
+                <input type="text" oninput="guessedLetter = this.value">
+                <button onclick="checkLetter()"> Sjekk bokstav</button>
+                <button onclick="checkWord()"> Sjekk ord</button>
+             
+            `
+            document.getElementById('app').innerHTML = html;
+
+        }
+
+        function showWord(){
+            for(let i = 0; i < word.length; i++){
+                wordArray.push(' _ ')
+            }
+        }
+
+
+
+        //controller
+        function checkLetter(){
+            if(word.includes(guessedLetter)){
+                for(let i = 0; i< word.length; i++){
+                    if(word[i] == guessedLetter){
+                        wordArray[i] = ' ' + guessedLetter + ' '
+                    }
+                }
+            }
+            else{
+                answerText ='feil bokstav';
+
+            }
+        
+            show();
+        }
+
+        function checkWord(){
+            if(word == guessedLetter){
+                answerText ='du gjettet riktig'
+            }
+            else{
+                answerText ='du gjettet feil, prøv igjen';
+            }
+            show();
+        }
+    </script>
+</body>
+</html>
