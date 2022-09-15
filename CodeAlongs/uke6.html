@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">ඞ</div>
+
+    <script>
+    //model
+        let inputValue = ''
+        let handleliste = ['eple', 'buttplug', 'melk', 'vaselin', 'extra virgin olive oil']
+    //view
+    show(); 
+    function show(){
+        let HTML = '';
+        for (let i = 0; i < handleliste.length; i++){
+            HTML += `<li>${handleliste[i]} <button onclick="changeItem(${i})">Changes</button><button onclick="deleteItem(${i})">x</button></li> `
+        }
+        HTML += `
+            <input oninput="inputValue = this.value" type="text"> <button onclick="addItem()">Legg til ny item</button>
+        `;
+        document.getElementById("app").innerHTML = HTML;
+
+    }
+
+    
+    </script>
+    <script src="cntrl.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.19.1.css">
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.19.1.js"></script>
+  <script src="./cntrl.js"></script>
+  <script>
+    
+  
+    // QUnit.module('add', function() {
+    //   QUnit.test('two numbers', function(assert) {
+    //     assert.equal(add(1, 2), 3);
+    //   });
+    // });
+
+    // dummy model
+    let handleliste = [];
+    let inputValue;
+
+    // dummmy controller
+
+    function show() {
+    }
+
+     QUnit.test('legge til item', function(assert) {
+        inputValue = 'brød'
+        handleliste = [];
+        addItem()
+
+        let expected = ['brød']
+        let actual = handleliste
+        assert.deepEqual(actual, expected);
+      });
+
+     QUnit.test('slett item', function(assert) {
+        handleliste = ["vann", "melk"];
+        deleteItem(1)
+
+        let expected = ['vann']
+        let actual = handleliste
+        assert.deepEqual(actual, expected);
+      });
+      
+      QUnit.test('endre item', function(assert) {
+        handleliste = ["vann", "melk"];
+        inputValue='brød';
+        changeItem(1)
+
+        let expected = ['vann','brød']
+        let actual = handleliste
+        assert.deepEqual(actual, expected);
+      });
+  </script>
+</body>
