@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!-- 
+    
+Man kan velge navnet man ønsker å gi sim`en
+En sim skal ha muligheten til å gå inn i forskjellige rom
+
+Stue
+Bad
+Kjøkken
+Soverom
+
+Man skal kunne legge til møbler i rommet man befinner seg i
+
+Sofa - sitte i sofaen
+Seng - wohoo
+Kjøleskap - ta mat
+Vask - vaske henda
+Do - bommelom
+
+Når man er i rommet, skal det vises hva slags møbler som befinner seg i rommet,
+man skal også kunne utføre handlinger knyttet til møblet -->
+
+</head>
+<body>
+    <div id="app" >
+    </div>
+</body>
+<script>
+    //model
+    let name = '';
+    let activeRoom = '';
+    let selectRooms = [];
+    let selectItems = [];
+
+    let rooms = [
+        {  
+            roomName: 'Stue',
+            roomId: 0,
+            roomItems: []
+        },
+        {  
+            roomName: 'Bad',
+            roomId: 1,
+            roomItems: []
+        },
+        {  
+            roomName: 'Kjøkken',
+            roomId: 2,
+            roomItems: []
+        },
+        {  
+            roomName: 'Soverom',
+            roomId: 3,
+            roomItems: []
+        },
+    ];
+
+    let items = [
+        {
+            itemName: 'Toilet',
+            itemId: 0, 
+            itemVerb: 'Take a dump'
+        },
+        {
+            itemName: 'Sofa',
+            itemId: 0, 
+            itemVerb: 'Sit on sofa'
+        },
+        {
+            itemName: 'Kjøleskap',
+            itemId: 0, 
+            itemVerb: 'Get food'
+        },
+        {
+            itemName: 'Seng',
+            itemId: 0, 
+            itemVerb: 'Wohoo'
+        },
+    ]
+    UpdateView();
+    //view
+      function UpdateView(){
+        let html = `` 
+            html += `
+            <img src="sim.jpg">
+            <input onchange="updateName(this.value)" type="text">
+            <div>Name: ${name}</div>
+            <div>Room: ${activeRoom}</div>
+            <select onchange="updateRoom(this.value)" onload="${getRooms()}">${selectRooms}</select>
+            <select onchange="addItemToRoom(this.value)" onload="${getItems()}">${selectItems}</select>
+            `;
+
+            document.getElementById('app').innerHTML = html;
+          }
+    //controller PAUSE TIL 11.08
+          function updateName(input){
+            name = input;
+            UpdateView();
+          }
+          function getRooms(element){
+            for(room of rooms){
+                selectRooms.push(`<option " value="${room.roomName}">${room.roomName}</option>`)
+            }
+          }
+          function getItems(element){
+            for(item of items){
+                selectItems.push(`<option " value="${item.itemName}">${item.itemName}</option>`)
+            }
+          }
+          function updateRoom(room){
+            console.log(room)
+            activeRoom = room;
+            UpdateView();
+          }
+          function addItemToRoom(item){
+            let room = rooms.filter(room => room.roomName == activeRoom);
+            room[0].roomItems.push(item);
+          }
+
+          
+</script>
+</html>
